@@ -1,0 +1,23 @@
+{
+  "suggest.noselect": false,
+  "eslint.autoFixOnSave": true,
+  "diagnostic.errorSign": "✗",
+  "java.import.maven.enabled": true,
+  "java.completion.enabled": true,
+  "codeLens.enable": true,
+  "java.referencesCodeLens.enabled": true,
+  "typescript.referencesCodeLens.enable": false,
+  "javascript.referencesCodeLens.enable": false,
+  "java.jdt.ls.vmargs": "-javaagent:/usr/local/share/lombok/lombok.jar",
+  "typescript.updateImportsOnFileMove.enable": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "java",
+    "javascript",
+    "typescript",
+    "typescriptreact",
+    "json",
+    "javascriptreact",
+    "typescript.tsx",
+    "graphql"
+  ]
+}
