@@ -1,0 +1,31 @@
+[user]
+	name = Duc Nguyen
+	email = duc.nyzn@gmail.com
+
+[color]
+	ui = true
+
+[alias]
+  setD = "config --global user.email 'duc.nyzn@gmail.com'"
+  p = pull
+  fp = fetch pull
+  co = checkout
+  cot = checkout --track
+  cob = checkout -b
+  coo = !git fetch -p && git checkout
+  br = branch
+  st = status
+  aa = add -A
+  cm = commit -m
+  cam = commit --amend 
+  fush = push -f
+  fp = fetch -p
+  save = stash push
+  pop = stash pop
+  cue = config user.email
+  cun = config user.name
+  who = !git config user.email && git config user.name
+
+[core]
+	editor = nvim
+

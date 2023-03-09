@@ -1,7 +1,6 @@
 call plug#begin()
 
 " Filebrowsing
-Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-grepper'
@@ -34,14 +33,21 @@ Plug 'junegunn/limelight.vim'
 Plug 'Asheq/close-buffers.vim'
 Plug 'tpope/vim-surround'
 Plug 'mustache/vim-mustache-handlebars'
+Plug 'williamboman/nvim-lsp-installer'
+Plug 'neovim/nvim-lspconfig'
 
 " Other stuff
 Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-commentary'
+Plug 'ryanoasis/vim-devicons'
+
+" Tool for web development
+Plug 'mattn/emmet-vim'
 
 " Test
 Plug 'vim-test/vim-test'
 
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 colorscheme gruvbox
@@ -96,10 +102,19 @@ set splitright
 set ignorecase
 
 " Show invisivles
-set list
-set listchars=tab:»-,trail:·,eol:¬
+" set list
+" set listchars=tab:»-,trail:·,eol:¬
 
 set clipboard+=unnamedplus
+
+set guifont=hack
+set encoding=UTF-8 
+
+
+set showcmd
+" Mac stuff
+" set fileformats=mac
+
 
 " Save file
 nnoremap <leader>w :w<cr>
@@ -109,6 +124,7 @@ nnoremap <Tab> :bnext<cr>
 nnoremap <S-Tab> :bprevious<cr>
 
 nnoremap <leader>bd :Bdelete menu<CR>
+nnoremap <leader>bh :Bdelete hidden<CR>
 
 " Use Tab to navigate in the completion list
 " inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -129,6 +145,22 @@ function! s:check_back_space() abort
 endfunction
 
 
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <silent><expr> <C-x><C-z> coc#pum#visible() ? coc#pum#stop() : "\<C-x>\<C-z>"
+" remap for complete to use tab and <cr>
+inoremap <silent><expr> <TAB>
+        \ coc#pum#visible() ? coc#pum#next(1):
+        \ <SID>check_back_space() ? "\<Tab>" :
+        \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+inoremap <silent><expr> <c-space> coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
 " position. Coc only does snippet and additional edit on confirm.
 " <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
@@ -138,12 +170,18 @@ else
   inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 endif
 
+inoremap <silent><expr> <cr> coc#pum#visible() && coc#pum#info()['index'] != -1 ? coc#pum#confirm() :
+        \ "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
 " reload nvim with new init.vim
 nnoremap <leader>r :source $MYVIMRC<CR>
 
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
+command! CodeAction :call CocActionAsync('codeAction', '')
+
+nnoremap <leader><CR> :CodeAction<CR>
 nnoremap <M-CR> :CocAction<CR>
 
 " Use K to show documentation in preview window
@@ -179,6 +217,7 @@ nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
+nmap <Leader>R :NERDTreeFocus<cr>R<c-w><c-p>
 
 """" COC
 " Use <c-space> to trigger completion.
@@ -196,9 +235,6 @@ nmap <silent> gr <Plug>(coc-references)
 " Jump to diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" Test
-nmap <silent> <leader>t :TestNearest<CR>
 
 function! LightlineCocCoverageStatus() abort
   let status = get(g:, 'coc_coverage_lines_pct', '')
@@ -225,6 +261,25 @@ let g:lightline = {
   \ }
 \ }
 
+" Test
+nmap <silent> <leader>t :TestNearest<CR>
+
+" Emmet
+let g:user_emmet_mode='a'    "enable all function in all mode.
+ " emmet trigger key"
+let g:user_emmet_leader_key=','
+
+" LSP
+  " require("nvim-lsp-installer").setup({
+  "   automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
+  "   ui = {
+  "       icons = {
+  "           server_installed = "✓",
+  "           server_pending = "➜",
+  "           server_uninstalled = "✗"
+  "       }
+  "   }
+" })
 
 let g:coc_global_extensions = [
   \ 'coc-snippets',
@@ -235,7 +290,12 @@ let g:coc_global_extensions = [
   \ 'coc-json',
   \ 'coc-stylelint',
   \ 'coc-css',
+  \ 'coc-html',
   \ 'coc-prisma',
   \ 'coc-java',
-  \ 'coc-java-debug'
+  \ 'coc-java-debug',
+  \ 'coc-angular',
+  \ 'coc-actions',
+  \ 'coc-cssmodules',
+  \ 'coc-html-css-support'
   \ ]
