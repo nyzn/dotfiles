@@ -72,7 +72,7 @@ dotfiles config --local status.showUntrackedFiles no
 
 ## Resource
 
-[Dotfiles Tutorial](https://www.atlassian.com/git/tutorials/dotfiles)
-[Plugin Manager](https://github.com/junegunn/vim-plug)
+- [Dotfiles Tutorial](https://www.atlassian.com/git/tutorials/dotfiles)
+- [Plugin Manager](https://github.com/junegunn/vim-plug)
 
 
