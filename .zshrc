@@ -73,6 +73,7 @@ ZSH_THEME="awesomepanda"
 plugins=(git brew)
 
 source $ZSH/oh-my-zsh.sh
+source ~/.bash_profile
 
 # User configuration
 
