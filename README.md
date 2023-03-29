@@ -23,6 +23,21 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
 
+- Install fonts
+```
+git clone https://github.com/powerline/fonts.git --depth=1
+cd fonts
+./install.sh
+cd ..
+rm -rf fonts
+
+git clone https://github.com/ryanoasis/nerd-fonts.git --depth 1
+cd nerd-fonts
+./install.sh
+cd ..
+rm -rf nerd-fonts
+```
+
 ## Clone Repo
 
 - Prior before clone
