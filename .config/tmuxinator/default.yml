@@ -45,7 +45,7 @@ root: ~/
 # attach: false
 
 windows:
-  - console:
+  - zsh:
       layout: 6096,214x66,0,0{107x66,0,0,0,106x66,108,0[106x33,108,0,7,106x32,108,34,8]}
       panes:
         - clear

@@ -17,11 +17,19 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 brew install git python python3 neovim fzf node ranger tmux tmuxinator wget
 ```
 
-- Install plugin manager for vim
+- Install plugin manager for vim if using vimscript
 ```
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
+
+- Install packer with lua
+> Unix, Linux Installation
+```
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+```
+
 
 - Install fonts
 ```
@@ -85,9 +93,19 @@ dotfiles checkout
 dotfiles config --local status.showUntrackedFiles no
 ```
 
+- Install plugins for vim 
+>vim-plug
+```
+:PlugInstall
+```
+>packer.vim
+```
+:PackerSync
+```
+
 ## Resource
 
 - [Dotfiles Tutorial](https://www.atlassian.com/git/tutorials/dotfiles)
 - [Plugin Manager](https://github.com/junegunn/vim-plug)
-
+- [Packer](https://github.com/wbthomason/packer.nvim)
 

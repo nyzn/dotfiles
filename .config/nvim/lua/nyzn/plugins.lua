@@ -1,0 +1,85 @@
+-- This file can be loaded by calling `lua require('plugins')` from your init.vim
+
+-- Only required if you have packer configured as `opt`
+vim.cmd [[packadd packer.nvim]]
+
+return require('packer').startup(function(use)
+-- Packer can manage itself
+use 'wbthomason/packer.nvim'
+
+-- File Browsing
+use 'junegunn/fzf'
+use 'junegunn/fzf.vim'
+use 'mhinz/vim-grepper'
+use 'francoiscabrol/ranger.vim'
+use 'rbgrouleff/bclose.vim'
+use 'nvim-lua/plenary.nvim'
+use 'nvim-lua/popup.nvim'
+use {
+	'nvim-telescope/telescope.nvim', tag = '0.1.1',
+	-- or                            , branch = '0.1.x',
+	requires = { {'nvim-lua/plenary.nvim'} }
+}
+use 'nvim-telescope/telescope-fzy-native.nvim'
+use("theprimeagen/harpoon")
+
+use 'preservim/nerdtree'
+use ('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
+use ( 'nvim-treesitter/playground' )
+
+-- TypeScript
+use 'HerringtonDarkholme/yats.vim'
+use 'evanleck/vim-svelte'
+
+-- Color themes
+use { "ellisonleao/gruvbox.nvim", as = 'gruvbox' }
+
+-- Git
+use 'tpope/vim-fugitive'
+use 'mhinz/vim-signify'
+
+-- Editing
+use 'kshenoy/vim-signature'
+use 'junegunn/limelight.vim'
+use 'Asheq/close-buffers.vim'
+use 'tpope/vim-surround'
+use 'mustache/vim-mustache-handlebars'
+
+use {"neoclide/coc.nvim", branch = 'release'}
+
+-- lsp zero comment for CoC
+-- -- use 'neovim/nvim-lspconfig'
+-- use {
+-- 	'VonHeikemen/lsp-zero.nvim',
+-- 	branch = 'v1.x',
+-- 	requires = {
+-- 		-- LSP Support
+-- 		{'neovim/nvim-lspconfig'},
+-- 		{'williamboman/mason.nvim'},
+-- 		{'williamboman/mason-lspconfig.nvim'},
+
+-- 		-- Autocompletion
+-- 		{'hrsh7th/nvim-cmp'},
+-- 		{'hrsh7th/cmp-buffer'},
+-- 		{'hrsh7th/cmp-path'},
+-- 		{'saadparwaiz1/cmp_luasnip'},
+-- 		{'hrsh7th/cmp-nvim-lsp'},
+-- 		{'hrsh7th/cmp-nvim-lua'},
+
+-- 		-- Snippets
+-- 		{'L3MON4D3/LuaSnip'},
+-- 		{'rafamadriz/friendly-snippets'},
+-- 	}
+-- }
+
+-- Other stuff
+use 'mhinz/vim-startify'
+use 'tpope/vim-commentary'
+use 'ryanoasis/vim-devicons'
+
+-- Tool for web development
+use 'mattn/emmet-vim'
+
+-- Test
+use 'vim-test/vim-test'
+end)
