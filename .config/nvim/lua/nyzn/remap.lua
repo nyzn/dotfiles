@@ -15,8 +15,8 @@ vim.keymap.set("n", "<leader>bh" , ":Bdelete hidden<CR>")
 
 -- move highlighted code
 -- TODO search this
--- vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
--- vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 
 -- cursor stay in place by input
@@ -36,3 +36,8 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 
 vim.keymap.set("n", "Q", "<nop>")
 
+
+-- disable netrw at the very start of your init.lua (strongly advised)
+-- for nvim-tree
+vim.g.loaded = 1
+vim.g.loaded_netrwPlugin = 1

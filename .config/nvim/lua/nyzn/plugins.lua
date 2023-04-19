@@ -23,7 +23,15 @@ use {
 use 'nvim-telescope/telescope-fzy-native.nvim'
 use("theprimeagen/harpoon")
 
-use 'preservim/nerdtree'
+use {
+  'nvim-tree/nvim-tree.lua',
+  requires = {
+    'nvim-tree/nvim-web-devicons', -- optional
+  },
+  config = function()
+    require("nvim-tree").setup {}
+  end
+}
 use ('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
 use ( 'nvim-treesitter/playground' )
 
@@ -75,10 +83,15 @@ use {"neoclide/coc.nvim", branch = 'release'}
 -- Other stuff
 use 'mhinz/vim-startify'
 use 'tpope/vim-commentary'
-use 'ryanoasis/vim-devicons'
+-- use 'ryanoasis/vim-devicons'
 
 -- Tool for web development
-use 'mattn/emmet-vim'
+use { 'mattn/emmet-vim' ,
+  setup = function() -- load stuff before the plugin is loaded
+    vim.g.user_emmet_leader_key = ','
+    vim.g.user_emmet_mode = 'a'
+  end
+}
 
 -- Test
 use 'vim-test/vim-test'

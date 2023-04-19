@@ -14,7 +14,8 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 - Install dependencies:
 ```
-brew install git python python3 neovim fzf node ranger tmux tmuxinator wget docker
+brew install git python python3 neovim fzf node ranger tmux tmuxinator wget
+brew install --cask docker
 ```
 
 - Install plugin manager for vim if using vimscript
