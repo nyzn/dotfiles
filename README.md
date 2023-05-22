@@ -14,7 +14,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 - Install dependencies:
 ```
-brew install git python python3 neovim fzf node ranger tmux tmuxinator wget ripgrep fd
+brew install git python python3 neovim fzf node ranger tmux tmuxinator wget ripgrep fd bazel
 brew install --cask docker
 ```
 
