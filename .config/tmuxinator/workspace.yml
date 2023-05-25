@@ -1,6 +1,6 @@
 # /Users/ducnguyen/.config/tmuxinator/default.yml
 
-name: default
+name: workspace
 root: ~/Documents/workspace
 
 # Optional tmux socket

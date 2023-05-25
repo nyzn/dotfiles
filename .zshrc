@@ -106,7 +106,7 @@ alias pn=pnpm
 alias mux=tmuxinator
 
 # pnpm
-export PNPM_HOME="/Users/ducnguyen/Library/pnpm"
+export PNPM_HOME="$HOME/pnpm/store"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
