@@ -13,9 +13,9 @@ vim.g.coc_global_extensions = {
    'coc-java-debug',
    'coc-angular',
    'coc-actions',
-   'coc-cssmodules',
-   'coc-html-css-support',
-   'coc-tailwindcss',
+   -- 'coc-cssmodules',
+   -- 'coc-html-css-support',
+   -- 'coc-tailwindcss',
    'coc-yaml',
    'coc-docker'
 } 

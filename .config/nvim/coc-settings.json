@@ -18,7 +18,9 @@
     "json",
     "javascriptreact",
     "typescript.tsx",
-    "graphql"
+    "graphql",
+    "yml",
+    "prisma"
   ],
   "snippets.ultisnips.pythonPrompt": false
 }
