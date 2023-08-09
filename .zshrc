@@ -70,14 +70,13 @@ ZSH_THEME="awesomepanda"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git brew)
+plugins=(git brew mvn)
 
-source $ZSH/oh-my-zsh.sh
-# source ~/.bash_profile
+source ~/.bash_profile
 
 # User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
+export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -112,3 +111,8 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+source ~/.bash_profile
+source $ZSH/oh-my-zsh.sh
+
+export JAVA_HOME=$(/usr/libexec/java_home -v 19.0.2)
