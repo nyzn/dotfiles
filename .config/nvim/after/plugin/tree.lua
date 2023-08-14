@@ -42,6 +42,6 @@ require("nvim-tree").setup {
 
 local api = require('nvim-tree.api')
 
-vim.keymap.set('n', '<Leader>t', ':NvimTreeToggle<CR>')
+vim.keymap.set('n', '<C-t>', ':NvimTreeToggle<CR>')
 vim.keymap.set('n', '<C-f>', ':NvimTreeFindFile<CR>')
 vim.keymap.set('n', '<Leader>R', ':NvimTreeRefresh<CR>')

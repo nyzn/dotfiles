@@ -112,7 +112,7 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-source ~/.bash_profile
+# source ~/.bash_profile
 source $ZSH/oh-my-zsh.sh
 
-export JAVA_HOME=$(/usr/libexec/java_home -v 19.0.2)
+export JAVA_HOME=$(/usr/libexec/java_home -v 20.0.1)
