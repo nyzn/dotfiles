@@ -35,6 +35,8 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 
 vim.keymap.set("n", "Q", "<nop>")
 
+-- reload nvim
+vim.keymap.set("n", "<leader>sv", ":source $MYVIMRC<CR>")
 
 -- disable netrw at the very start of your init.lua (strongly advised)
 -- for nvim-tree

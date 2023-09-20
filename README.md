@@ -7,7 +7,7 @@ Initial README
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 ```
 
-- Install Oh My Zsh:
+- Install [Oh My Zsh](https://ohmyz.sh):
 ```
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
@@ -18,13 +18,13 @@ brew install git python python3 neovim fzf node ranger tmux tmuxinator wget ripg
 brew install --cask docker
 ```
 
-- Install plugin manager for vim if using vimscript
+- Install plugin manager for vim if using vimscript (OLD)
 ```
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
 
-- Install packer with lua
+- Install [Packer](https://github.com/wbthomason/packer.nvim) with lua
 > Unix, Linux Installation
 ```
 git clone --depth 1 https://github.com/wbthomason/packer.nvim\
