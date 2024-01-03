@@ -16,13 +16,14 @@ use 'rbgrouleff/bclose.vim'
 use 'nvim-lua/plenary.nvim'
 use 'nvim-lua/popup.nvim'
 use {
-	'nvim-telescope/telescope.nvim', tag = '0.1.1',
+	'nvim-telescope/telescope.nvim', tag = '0.1.5',
 	-- or                            , branch = '0.1.x',
 	requires = { {'nvim-lua/plenary.nvim'} }
 }
 use 'nvim-telescope/telescope-fzy-native.nvim'
 use("theprimeagen/harpoon")
 
+use 'nvim-tree/nvim-web-devicons'
 use {
   'nvim-tree/nvim-tree.lua',
   requires = {

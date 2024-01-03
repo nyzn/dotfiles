@@ -115,4 +115,4 @@ esac
 # source ~/.bash_profile
 source $ZSH/oh-my-zsh.sh
 
-export JAVA_HOME=$(/usr/libexec/java_home -v 20.0.1)
+export JAVA_HOME=$(/usr/libexec/java_home)
