@@ -69,6 +69,7 @@ keyset("n", "gy", "<Plug>(coc-type-definition)", {silent = true})
 keyset("n", "gi", "<Plug>(coc-implementation)", {silent = true})
 keyset("n", "gr", "<Plug>(coc-references)", {silent = true})
 
+keyset("n", "ac", "<Plug>(angular.goToComponentWithTemplateFile)", {silent = true})
 
 -- Use K to show documentation in preview window
 function _G.show_docs()

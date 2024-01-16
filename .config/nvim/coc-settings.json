@@ -8,7 +8,9 @@
   "java.referencesCodeLens.enabled": true,
   "typescript.referencescodelens.enable": false,
   "javascript.referencescodelens.enable": false,
-  "java.jdt.ls.vmargs": "-javaagent:~/lombok.jar -Xbootclasspath/a:~/lombok.jar",
+  "java.jdt.ls.vmargs": "-javaagent:/Users/U787248/lombok-1.18.30.jar -Xbootclasspath/a:/Users/U787248/lombok-1.18.30.jar",
+  "java.jdt.ls.lombokSupport.enabled": true,
+  "java.trace.server": "verbose",
   "typescript.updateImportsOnFileMove.enable": true,
   "coc.preferences.formatOnSaveFiletypes": [
     "java",
