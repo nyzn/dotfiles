@@ -34,7 +34,7 @@ use {
   end
 }
 use ('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
-use ( 'nvim-treesitter/playground' )
+use ('nvim-treesitter/playground' )
 
 -- TypeScript
 use 'HerringtonDarkholme/yats.vim'

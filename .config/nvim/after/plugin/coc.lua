@@ -1,4 +1,4 @@
-vim.g.coc_global_extensions = {
+  vim.g.coc_global_extensions = {
   'coc-actions',
   'coc-angular',
   'coc-css',
