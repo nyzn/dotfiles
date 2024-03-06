@@ -17,6 +17,7 @@
   st = status
   aa = add -A
   cm = commit -m
+  rc = rebase --continue
   cam = commit --amend 
   fush = push -f
   fp = fetch -p
@@ -25,9 +26,18 @@
   cue = config user.email
   cun = config user.name
   who = !git config user.email && git config user.name
-
+  fr = "!f() { git fetch && git rebase origin/"$1"; }; f"
 [core]
 	editor = nvim
+	excludesfile = /Users/U787248/.gitignore_global
 
 [credential]
 	helper = store
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Users/U787248/Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[commit]
+	template = /Users/U787248/.stCommitMsg
