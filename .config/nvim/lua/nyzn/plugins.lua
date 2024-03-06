@@ -23,11 +23,12 @@ use {
 use 'nvim-telescope/telescope-fzy-native.nvim'
 use("theprimeagen/harpoon")
 
-use 'nvim-tree/nvim-web-devicons'
+-- use 'nvim-tree/nvim-web-devicons'
 use {
   'nvim-tree/nvim-tree.lua',
   requires = {
-    'nvim-tree/nvim-web-devicons', -- optional
+    -- 'nvim-tree/nvim-web-devicons', -- optional
+    'ryanoasis/vim-devicons'
   },
   config = function()
     require("nvim-tree").setup {}
@@ -84,7 +85,7 @@ use {"neoclide/coc.nvim", branch = 'release'}
 -- Other stuff
 use 'mhinz/vim-startify'
 use 'tpope/vim-commentary'
--- use 'ryanoasis/vim-devicons'
+use 'ryanoasis/vim-devicons'
 
 -- Tool for web development
 use { 'mattn/emmet-vim' ,

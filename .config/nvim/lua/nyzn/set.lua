@@ -27,3 +27,5 @@ vim.opt.signcolumn = "yes"
 
 vim.opt.updatetime = 50
 vim.opt.statusline = "%t"
+
+vim.opt.guifont = "Hack"
