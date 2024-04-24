@@ -34,7 +34,8 @@ use {
     require("nvim-tree").setup {}
   end
 }
-use ('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
+-- use ('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
+use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 use ('nvim-treesitter/playground' )
 
 -- TypeScript
@@ -43,6 +44,7 @@ use 'evanleck/vim-svelte'
 
 -- Color themes
 use { "ellisonleao/gruvbox.nvim", as = 'gruvbox' }
+use 'savq/melange-nvim'
 
 -- Git
 use 'tpope/vim-fugitive'

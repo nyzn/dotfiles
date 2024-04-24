@@ -2,27 +2,12 @@
   "suggest.noselect": false,
   "eslint.autoFixOnSave": true,
   "diagnostic.errorSign": "✗",
-  "java.import.maven.enabled": true,
-  "java.completion.enabled": true,
   "codeLens.enable": true,
-  "java.referencesCodeLens.enabled": true,
-  "typescript.referencescodelens.enable": false,
-  "javascript.referencescodelens.enable": false,
+  "snippets.ultisnips.pythonPrompt": false,
+  "java.completion.enabled": true,
+  "java.import.maven.enabled": true,
   "java.jdt.ls.vmargs": "-javaagent:/Users/U787248/lombok-1.18.30.jar -Xbootclasspath/a:/Users/U787248/lombok-1.18.30.jar",
   "java.jdt.ls.lombokSupport.enabled": true,
-  "java.trace.server": "verbose",
-  "typescript.updateImportsOnFileMove.enable": true,
-  "coc.preferences.formatOnSaveFiletypes": [
-    "java",
-    "javascript",
-    "typescript",
-    "typescriptreact",
-    "json",
-    "javascriptreact",
-    "typescript.tsx",
-    "graphql",
-    "yml",
-    "prisma"
-  ],
-  "snippets.ultisnips.pythonPrompt": false
+  "java.referencesCodeLens.enabled": true,
+  "java.trace.server": "messages"
 }

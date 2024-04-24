@@ -31,6 +31,11 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 ```
 
+- Install [Tmux Plugin Manger](https://github.com/tmux-plugins/tpm) 
+`prefix` + <kbd>I</kbd>
+```
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+```
 
 - Install fonts
 ```
@@ -109,4 +114,4 @@ dotfiles config --local status.showUntrackedFiles no
 - [Dotfiles Tutorial](https://www.atlassian.com/git/tutorials/dotfiles)
 - [Plugin Manager](https://github.com/junegunn/vim-plug)
 - [Packer](https://github.com/wbthomason/packer.nvim)
-
+- [Tmux Packer]()https://github.com/tmux-plugins/tpm

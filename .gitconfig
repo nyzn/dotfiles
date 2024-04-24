@@ -7,6 +7,7 @@
 
 [alias]
   setD = "config --global user.email 'duc.nyzn@gmail.com'"
+  setL = "config --global user.email 'duc.nguyen-viet@lht.dlh.de'"
   p = pull
   fp = fetch pull
   co = checkout
