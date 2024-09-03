@@ -72,7 +72,7 @@ ZSH_THEME="awesomepanda"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git brew mvn)
 
-source ~/.bash_profile
+# source ~/.bash_profile
 
 # User configuration
 
@@ -112,7 +112,16 @@ case ":$PATH:" in
 esac
 # pnpm end
 
+
+export JAVA_HOME=$(/usr/libexec/java_home)
+
+
+# # Load Angular CLI autocompletion.
+# source <(ng completion script)
+
 # source ~/.bash_profile
 source $ZSH/oh-my-zsh.sh
 
-export JAVA_HOME=$(/usr/libexec/java_home)
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

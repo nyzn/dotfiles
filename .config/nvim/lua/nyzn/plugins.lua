@@ -27,16 +27,28 @@ use("theprimeagen/harpoon")
 use {
   'nvim-tree/nvim-tree.lua',
   requires = {
-    -- 'nvim-tree/nvim-web-devicons', -- optional
-    'ryanoasis/vim-devicons'
+    'nvim-tree/nvim-web-devicons', -- optional
+    -- 'ryanoasis/vim-devicons'
   },
   config = function()
     require("nvim-tree").setup {}
   end
 }
 -- use ('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
-use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
-use ('nvim-treesitter/playground' )
+use {'nvim-treesitter/nvim-treesitter', 
+run = ':TSUpdate'
+-- Note: :TSUpdate will cause Packer to fail upon the first installation. It will run correctly when updating. To avoid this, call nvim-treesitter.install.update() directly:
+  -- run = function()
+  --   local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+  --   ts_update()
+  -- end, 
+}
+
+-- This plugin is deprecated since the functionality is included in Neovim: Use
+-- :Inspect to show the highlight groups under the cursor
+-- :InspectTree to show the parsed syntax tree ("TSPlayground")
+-- :EditQuery to open the Live Query Editor (Nvim 0.10+)
+-- use ('nvim-treesitter/playground' )
 
 -- TypeScript
 use 'HerringtonDarkholme/yats.vim'
@@ -87,7 +99,6 @@ use {"neoclide/coc.nvim", branch = 'release'}
 -- Other stuff
 use 'mhinz/vim-startify'
 use 'tpope/vim-commentary'
-use 'ryanoasis/vim-devicons'
 
 -- Tool for web development
 use { 'mattn/emmet-vim' ,

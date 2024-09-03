@@ -5,11 +5,20 @@ vim.keymap.set("n", " ", "<Nop>", { silent = true, remap = false })
 -- save file 
 vim.keymap.set("n", "<leader>w", vim.cmd.w)
 
+-- vmap <leader>f  <Plug>(coc-format-selected)
+-- nmap <leader>f  <Plug>(coc-format-selected)
+
+vim.keymap.set("n", "<leader>f", "<Plug>(coc-format-selected)")
+vim.keymap.set("v", "<leader>f", "<Plug>(coc-format-selected)")
+
 -- buffers
 vim.keymap.set("n", "<Tab>", ":bnext<CR>")
 vim.keymap.set("n", "<S-Tab>", ":bprevious<CR>")
 vim.keymap.set("n", "<leader>bd" , ":Bdelete menu<CR>")
 vim.keymap.set("n", "<leader>bh" , ":Bdelete hidden<CR>")
+
+-- Coc Restart
+vim.keymap.set("n", "<leader>br" , ":CoCRestart<CR>")
 
 -- move highlighted code
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")

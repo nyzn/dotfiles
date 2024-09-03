@@ -26,14 +26,17 @@
   pop = stash pop
   cue = config user.email
   cun = config user.name
+  cl = !git branch --v | grep "[gone]" | awk '{print $1}' | xargs git branch -D
   who = !git config user.email && git config user.name
   fr = "!f() { git fetch && git rebase origin/"$1"; }; f"
+  ss = !git restore --stage .
+
 [core]
 	editor = nvim
 	excludesfile = /Users/U787248/.gitignore_global
 
 [credential]
-	helper = store
+	helper = osxkeychain
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
