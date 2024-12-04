@@ -1,15 +1,15 @@
 {
-  "suggest.noselect": false,
-  "eslint.autoFixOnSave": true,
-  "diagnostic.errorSign": "✗",
+  "angular.enable-strict-mode-prompt": false,
   "codeLens.enable": true,
-  "snippets.ultisnips.pythonPrompt": false,
+  "coc.preferences.formatOnSave": true,
+  "diagnostic.errorSign": "✗",
+  "eslint.autoFixOnSave": true,
   "java.completion.enabled": true,
   "java.import.maven.enabled": true,
   "java.jdt.ls.vmargs": "-javaagent:/Users/U787248/lombok-1.18.30.jar -Xbootclasspath/a:/Users/U787248/lombok-1.18.30.jar",
-  "coc.preferences.formatOnSave": true,
   "java.jdt.ls.lombokSupport.enabled": true,
   "java.referencesCodeLens.enabled": true,
-  "java.trace.server": "messages",
-  "angular.enable-strict-mode-prompt": false
+  "java.trace.server": "verbose",
+  "java.jdt.ls.java.home": "/Users/U787248/.sdkman/candidates/java/21.0.4-tem",
+  "suggest.noselect": false
 }

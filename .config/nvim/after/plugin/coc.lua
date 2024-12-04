@@ -19,7 +19,7 @@
    -- 'coc-cssmodules',
    -- 'coc-html-css-support',
    -- 'coc-tailwindcss',
-   'coc-sqlfluff',
+   'coc-sql',
    'coc-yaml'
 } 
 
