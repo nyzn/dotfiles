@@ -1,26 +1,18 @@
-  vim.g.coc_global_extensions = {
+vim.g.coc_global_extensions = {
   'coc-actions',
   'coc-angular',
   'coc-css',
-  -- 'coc-class-css',
-  -- 'coc-camel',
   'coc-docker',
-  -- 'coc-eslint',
+  'coc-eslint',
   'coc-html',
   'coc-java',
-  -- 'coc-java-debug',
+  'coc-java-debug',
   'coc-json',
-   -- 'coc-pairs',
-   -- 'coc-prettier',
-   -- 'coc-snippets',
-   'coc-tsserver',
-   -- 'coc-prisma',
-   -- 'coc-stylelint',
-   -- 'coc-cssmodules',
-   -- 'coc-html-css-support',
-   -- 'coc-tailwindcss',
-   'coc-sql',
-   'coc-yaml'
+  'coc-prettier',
+  'coc-snippets',
+  'coc-tsserver',
+  'coc-sql',
+  'coc-yaml'
 } 
 
 -- Some servers have issues with backup files, see #649

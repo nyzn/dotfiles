@@ -51,8 +51,8 @@ run = ':TSUpdate'
 -- use ('nvim-treesitter/playground' )
 
 -- TypeScript
-use 'HerringtonDarkholme/yats.vim'
-use 'evanleck/vim-svelte'
+-- use 'HerringtonDarkholme/yats.vim'
+-- use 'evanleck/vim-svelte'
 
 -- Color themes
 use { "ellisonleao/gruvbox.nvim", as = 'gruvbox' }

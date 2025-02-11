@@ -103,6 +103,9 @@ fi
 alias dotfiles='/usr/bin/git --git-dir=/$HOME/.dotfiles/ --work-tree=/$HOME'
 alias pn=pnpm
 alias mux=tmuxinator
+alias dcompose="docker-compose"
+alias pcompose="podman-compose"
+
 
 # pnpm
 export PNPM_HOME="$HOME/pnpm/store"
@@ -112,9 +115,9 @@ case ":$PATH:" in
 esac
 # pnpm end
 
+export PATH="/opt/homebrew/opt/node@20/bin:$PATH"
 
 export JAVA_HOME=$(/usr/libexec/java_home)
-
 
 # # Load Angular CLI autocompletion.
 # source <(ng completion script)
@@ -125,3 +128,9 @@ source $ZSH/oh-my-zsh.sh
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+export PATH=$PATH:$(python3 -m site --user-base)/bin
+export DOCKER_HOST=unix:///run/user/$(id -u)/podman/podman.sock
