@@ -4,7 +4,6 @@
   "coc.preferences.formatOnSave": true,
   "workspace.rootPatterns": ["package.json", ".git"],
   "diagnostic.errorSign": "✗",
-  "eslint.autoFixOnSave": true,
   "java.completion.enabled": true,
   "java.import.maven.enabled": true,
   "java.jdt.ls.vmargs": "-javaagent:/Users/U787248/lombok-1.18.30.jar -Xbootclasspath/a:/Users/U787248/lombok-1.18.30.jar",

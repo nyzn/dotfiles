@@ -44,12 +44,6 @@ run = ':TSUpdate'
   -- end, 
 }
 
--- This plugin is deprecated since the functionality is included in Neovim: Use
--- :Inspect to show the highlight groups under the cursor
--- :InspectTree to show the parsed syntax tree ("TSPlayground")
--- :EditQuery to open the Live Query Editor (Nvim 0.10+)
--- use ('nvim-treesitter/playground' )
-
 -- TypeScript
 -- use 'HerringtonDarkholme/yats.vim'
 -- use 'evanleck/vim-svelte'

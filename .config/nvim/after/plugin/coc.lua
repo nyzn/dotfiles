@@ -3,7 +3,7 @@ vim.g.coc_global_extensions = {
   'coc-angular',
   'coc-css',
   'coc-docker',
-  'coc-eslint',
+  -- 'coc-eslint', problematic on save
   'coc-html',
   'coc-java',
   'coc-java-debug',
