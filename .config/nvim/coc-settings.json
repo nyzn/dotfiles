@@ -11,5 +11,12 @@
   "java.referencesCodeLens.enabled": true,
   "java.trace.server": "verbose",
   "java.jdt.ls.java.home": "/Users/U787248/.sdkman/candidates/java/21.0.4-tem",
+  "java.configuration.runtimes": [
+    {
+      "name": "JavaSE-21",
+      "path": "/Users/U787248/.sdkman/candidates/java/21.0.4-tem",
+      "default": true
+    }
+  ],
   "suggest.noselect": false
 }

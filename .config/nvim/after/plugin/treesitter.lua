@@ -32,7 +32,7 @@ require'nvim-treesitter.configs'.setup {
   },
 
   -- Indentation based on treesitter for the = operator. NOTE: This is an experimental feature.
-  -- indent = {
-  --   enable = true
-  -- }
+  indent = {
+    enable = true
+  }
 }
