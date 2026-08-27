@@ -1,0 +1,15 @@
+# Tracked in the PUBLIC nyzn/dotfiles repo — whitelist only.
+# Everything else under ~/.claude (credentials, transcripts, session state,
+# caches, plugin installs) must stay untracked. Add new entries deliberately.
+#
+# Every rule is anchored with a leading "/". An unanchored "!README.md" would
+# match at ANY depth and drag in the whole plugins/ cache.
+*
+!*/
+/plugins/
+!/.gitignore
+!/README.md
+!/settings.json
+!/agents/**
+!/hooks/**
+!/skills/**

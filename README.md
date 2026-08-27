@@ -109,6 +109,33 @@ dotfiles config --local status.showUntrackedFiles no
 :PackerSync
 ```
 
+## Claude Code
+
+`~/.claude/` is tracked here, so the personal skills, sub-agents, hooks and
+plugin list follow you to any machine — no need to clone a project repo to get
+them. After `dotfiles checkout`, they are already in place; Claude Code picks up
+`~/.claude/skills/` and `~/.claude/agents/` on next start, and installs the
+plugins declared in `~/.claude/settings.json` (`enabledPlugins` +
+`extraKnownMarketplaces`).
+
+Requires `node` on `PATH` — the caveman hooks and statusline shell out to it.
+
+What is tracked, and what must never be:
+
+- **Tracked** — `settings.json`, `skills/`, `agents/`, `hooks/`, `README.md`.
+- **Never** — `.credentials.json`, `history.jsonl`, `projects/`, `sessions/`,
+  `plugins/`, and every cache. **This repo is public.**
+
+`~/.claude/.gitignore` enforces that as a whitelist: it ignores `*` and
+re-includes only the paths above, each anchored with a leading `/`. Adding
+something new to the repo means adding an explicit `!/path` line — do that
+deliberately, and never for a file that could hold a token or a transcript.
+
+Keep `settings.json` machine-independent: `node` from `PATH` and
+`$HOME/.claude/...`, never a hardcoded `/Users/<name>/...` path. Anything
+repo-specific (a project's conventions, its `apps/<name>/` layout) belongs in
+that project's own `.claude/`, not here — `~/.claude/` loads in *every* repo.
+
 ## Resource
 
 - [Dotfiles Tutorial](https://www.atlassian.com/git/tutorials/dotfiles)
