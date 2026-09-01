@@ -35,7 +35,7 @@ unpinned agent silently bills at Opus rates.
 | `backend-dev` | endpoints, services, schema, migrations, jobs, external clients | sonnet |
 | `frontend-dev` | components, state, styling, a11y, and frontend performance | sonnet |
 | `test-engineer` | backend, frontend and E2E tests; flake diagnosis | sonnet |
-| `code-reviewer` | correctness and convention review of a diff | sonnet |
+| `code-reviewer` | correctness and convention review of a diff; base sync | sonnet |
 | `security-auditor` | secrets, injection, dependency and external-call risk | sonnet |
 | `tech-lead` | splits a cross-layer feature, closes with one recommendation | sonnet |
 | `budget-guard` | measured token consumption, go/trim/defer on a fan-out | haiku |
