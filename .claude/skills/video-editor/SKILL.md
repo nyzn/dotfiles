@@ -66,9 +66,10 @@ One recording with several topics → split into separate files.
 - Tell the story in camera order; pick the best 3–10 s of each clip from the contact sheet.
 - Speed-ramp long, uneventful stretches (`setpts=PTS/3` … `/4`), keep moments (a view, a sign, an arrival) at 1–1.5x. Target 30–45 s for Reels/TikTok.
 - Drop the original audio when it's sped up (it sounds broken); add music only if the user supplies a track or the B-roll kit has one — never pull music from the web.
-- Text overlays = short labels for the story beats (time, place, "arrived"), 2–2.5 s each, fade in/out, in the brand font, upper third:
+- Text overlays = short labels for the story beats (time, place, "arrived"), 2–2.5 s each, fade in/out, in the brand font, upper third. Put the label in a file and use `textfile=` — inline `text='06:40'` breaks at the `:` (option separator) and renders only "06":
   ```bash
-  drawtext=fontfile=$FONTFILE:text='06:40 – Abfahrt':fontsize=68:fontcolor=white:shadowcolor=black@0.6:shadowy=4:x=(w-tw)/2:y=h*0.16:alpha='if(lt(t,0.2),t/0.2,if(lt(t,2.2),1,max(0,(2.6-t)/0.4)))'
+  printf '06:40 – Abfahrt' > "$W/label1.txt"
+  drawtext=fontfile=$FONTFILE:textfile=$W/label1.txt:fontsize=68:fontcolor=white:shadowcolor=black@0.6:shadowy=4:x=(w-tw)/2:y=h*0.16:alpha='if(lt(t,0.2),t/0.2,if(lt(t,2.2),1,max(0,(2.6-t)/0.4)))'
   ```
 - Render each segment separately (in parallel), then concat with `-f concat -c copy`, then one final pass for fades + an audio track (silent `anullsrc` if there is no music — some apps and editors choke on video-only files).
 
