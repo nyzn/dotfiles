@@ -4,13 +4,14 @@
 Input: whisper.cpp JSON from `whisper-cli ... -ml 1 -sow -oj` (one word per segment),
 or openai-whisper JSON with --word_timestamps True.
 
-usage: captions.py whisper.json out.ass [--start S] [--end E] [--w 1080] [--h 1920] [--words 3]
+usage: captions.py whisper.json out.ass [--start S] [--end E] [--w 1080] [--h 1920] [--words 3] [--font Futura]
 Times in the ASS are shifted so --start becomes 0 (matches a clip cut at --start).
-Colors/font mirror brand.md — update both together.
+Colors/font mirror brand.md — update both together. --font overrides the default
+(Futura ships with macOS; on Linux pass "Inter" or "DejaVu Sans").
 """
 import argparse, json
 
-FONT, TEXT, ACTIVE, OUTLINE = "Futura", "&H00FFFFFF", "&H0015CCFA", "&H00000000"  # white, yellow, black
+TEXT, ACTIVE, OUTLINE = "&H00FFFFFF", "&H0015CCFA", "&H00000000"  # white, yellow, black
 
 
 def ts(t):
@@ -24,6 +25,7 @@ def main():
     a.add_argument("--start", type=float, default=0); a.add_argument("--end", type=float, default=1e9)
     a.add_argument("--w", type=int, default=1080); a.add_argument("--h", type=int, default=1920)
     a.add_argument("--words", type=int, default=3)
+    a.add_argument("--font", default="Futura")
     o = a.parse_args()
 
     d = json.load(open(o.json))
@@ -38,7 +40,7 @@ def main():
         "[Script Info]", "ScriptType: v4.00+", f"PlayResX: {o.w}", f"PlayResY: {o.h}", "",
         "[V4+ Styles]",
         "Format: Name, Fontname, Fontsize, PrimaryColour, OutlineColour, BackColour, Bold, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV",
-        f"Style: Cap,{FONT},{size},{TEXT},{OUTLINE},&H80000000,1,1,6,2,2,60,60,{margin}", "",
+        f"Style: Cap,{o.font},{size},{TEXT},{OUTLINE},&H80000000,1,1,6,2,2,60,60,{margin}", "",
         "[Events]", "Format: Layer, Start, End, Style, Text",
     ]
     for i in range(0, len(words), o.words):

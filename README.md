@@ -120,6 +120,9 @@ plugins declared in `~/.claude/settings.json` (`enabledPlugins` +
 
 Requires `node` on `PATH` — the caveman hooks and statusline shell out to it.
 
+Video editing (`video-editor`, `broll-organizer` skills) needs one extra step
+per machine: `~/.claude/skills/video-editor/setup.sh`.
+
 What is tracked, and what must never be:
 
 - **Tracked** — `settings.json`, `skills/`, `agents/`, `hooks/`, `README.md`.

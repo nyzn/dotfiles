@@ -5,7 +5,7 @@ description: Sort, rename, tag and catalog the user's B-roll library in "~/Movie
 
 # B-roll Organizer
 
-Library: `~/Movies/B-roll kit/` (local disk, not iCloud, not git). Catalog: `index.md` in that folder — the `video-editor` skill reads it to pick shots.
+Library: `~/Movies/B-roll kit/` (local disk, not iCloud, not git; created by `video-editor/setup.sh`). Not on this machine (e.g. a cloud session)? Say so and stop — don't create a fake library. Catalog: `index.md` in that folder — the `video-editor` skill reads it to pick shots.
 
 ```
 B-roll kit/
@@ -25,12 +25,12 @@ B-roll kit/
 2. **Inspect each** (no network, read-only):
    ```bash
    ffprobe -v error -show_entries format=duration:stream=width,height,codec_type -show_entries format_tags=creation_time -of json "$f"
-   FF=/opt/homebrew/opt/ffmpeg-full/bin/ffmpeg
+   FF=$(command -v /opt/homebrew/opt/ffmpeg-full/bin/ffmpeg || command -v ffmpeg)
    d=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$f")
-   $FF -v error -y -i "$f" -vf "fps=4/$d,scale=320:-1,tile=4x1" -frames:v 1 ~/VideoWork/thumb.jpg   # 4-frame strip, then Read it
+   $FF -v error -y -i "$f" -vf "fps=4/$d,scale=320:-1,tile=4x1" -frames:v 1 "${VIDEO_WORK:-$HOME/VideoWork}/thumb.jpg"   # 4-frame strip, then Read it
    ```
    Look at the strip; describe what is in the shot in a few words.
-3. **Propose, don't act yet.** Show one table: current path → new path, topic, tags, orientation (9:16 / 16:9), duration, quality notes (dark, shaky, blurry). Flag exact duplicates (`shasum -a 256`). Wait for "ok".
+3. **Propose, don't act yet.** Show one table: current path → new path, topic, tags, orientation (9:16 / 16:9), duration, quality notes (dark, shaky, blurry). Flag exact duplicates (`shasum -a 256`, or `sha256sum` on Linux). Wait for "ok".
 4. **Apply:** `mv -n` (never overwrite). Name: `YYYY-MM-DD_<topic>_<short-desc>_<v|h>.<ext>` (date from `creation_time`, else file mtime; lowercase, hyphens). Duplicates go to `_duplicates/` — never delete; tell the user they can remove them.
 5. **Update `index.md`** — one table per top folder, columns: file, duration, orientation, tags, description. Keep rows sorted by path.
 6. **Append to `log.md`:** date, then `old → new` per file.

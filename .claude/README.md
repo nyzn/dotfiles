@@ -12,7 +12,9 @@ Repo-specific config belongs in that repo's own `.claude/`.
 ├── skills/             # personal skills, available in every repo
 │   ├── open-pr/  review-pr/  fix-pr/  pr-description/  review-user/
 │   ├── conventional-commit/
-│   └── reflect/
+│   ├── reflect/
+│   ├── video-editor/         # SKILL.md, brand.md, captions.py, setup.sh
+│   └── broll-organizer/
 ├── agents/             # personal sub-agents
 │   ├── code-reviewer.md  security-auditor.md     # review layer
 │   ├── architect.md  backend-dev.md  frontend-dev.md  test-engineer.md
@@ -51,6 +53,26 @@ local transcripts under `projects/` over the rolling 5h window and the trailing
 7 days. It reports **consumption, not remaining quota** — plan limits are not
 readable from disk, so the true remaining percentage still comes from `/usage`
 in an interactive terminal.
+
+## Video skills
+
+`video-editor` (cut, caption, reframe, montage → Reels/TikTok/Shorts/YouTube)
+and `broll-organizer` (sorts `~/Movies/B-roll kit/`) moved here from
+`nyzn/mono` — they don't touch any repo, so they belong in every repo.
+
+- **One-time per machine:** `~/.claude/skills/video-editor/setup.sh` — installs
+  ffmpeg (ffmpeg-full on macOS for libass), whisper.cpp + model, the B-roll
+  folders, and the HeyGen Hyperframes skills via `npx skills add -g`.
+- **macOS and Linux.** The skill resolves ffmpeg, font (Futura → Inter →
+  DejaVu Sans) and work dir at runtime, so it also runs in cloud sessions.
+- **claude.ai / cloud sessions** don't see this folder. There the skill comes
+  in as an account skill (same `SKILL.md`); it fetches `brand.md` and
+  `captions.py` from this repo's raw URL when they're missing — so edit them
+  here, never in a copy.
+- **Hyperframes skills are third-party and untracked.** They land in
+  `~/.claude/skills/<name>/`, and `.gitignore` lists each one explicitly
+  *below* `!/skills/**`. If a Hyperframes update adds a skill, add its line
+  there before committing anything under `skills/`.
 
 ## The .gitignore is a whitelist
 

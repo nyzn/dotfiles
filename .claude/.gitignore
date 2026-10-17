@@ -13,3 +13,28 @@
 !/agents/**
 !/hooks/**
 !/skills/**
+
+# Third-party skills installed by skills/video-editor/setup.sh (`npx skills add
+# heygen-com/hyperframes -g`). Restored on each machine, never committed —
+# these lines must stay below `!/skills/**` to win.
+/skills/embedded-captions/
+/skills/faceless-explainer/
+/skills/figma/
+/skills/general-video/
+/skills/hyperframes/
+/skills/hyperframes-animation/
+/skills/hyperframes-audio/
+/skills/hyperframes-cli/
+/skills/hyperframes-core/
+/skills/hyperframes-creative/
+/skills/hyperframes-keyframes/
+/skills/hyperframes-registry/
+/skills/hyperframes-studio/
+/skills/media-use/
+/skills/motion-graphics/
+/skills/music-to-video/
+/skills/pr-to-video/
+/skills/product-launch-video/
+/skills/remotion-to-hyperframes/
+/skills/slideshow/
+/skills/talking-head-recut/
