@@ -1,16 +1,16 @@
 ---
 name: video-editor
-description: Personal video editor. Use whenever the user wants to edit, cut, trim, caption, reframe, split, clean up, level audio on, or export a video, or turn clips into a Reel/TikTok/Short/YouTube video — e.g. "edit this video", "cut my retakes", "add captions", "make this vertical", "make a reel from these clips".
+description: Personal video editor. Use whenever the user wants to edit, cut, trim, caption, reframe, split, clean up, level audio on, add transitions or effects (flash, glitch, slow-mo, "Person Flash" = cutout / "Scene-Screen" transition) to, or export a video, or turn clips into a Reel/TikTok/Short/Story/YouTube video — e.g. "edit this video", "cut my retakes", "add captions", "make this vertical", "make a reel from these clips", "füge Person Flash hinzu".
 ---
 
 # Video Editor
 
 The user is the director. You are the editor. Works on macOS (Claude Code locally) and Linux (cloud sessions, claude.ai) — resolve tools first, never assume a path.
 
-Companion files sit next to this one: [brand.md](brand.md), [captions.py](captions.py), [setup.sh](setup.sh). If they are missing (e.g. this skill was synced to claude.ai as a single file), fetch them after step 0:
+Companion files sit next to this one: [brand.md](brand.md), [captions.py](captions.py), [cutout.py](cutout.py), [setup.sh](setup.sh). If they are missing (e.g. this skill was synced to claude.ai as a single file), fetch them after step 0:
 ```bash
 SK=https://raw.githubusercontent.com/nyzn/dotfiles/main/.claude/skills/video-editor
-mkdir -p "$W/_skill" && for f in brand.md captions.py; do curl -fsSL "$SK/$f" -o "$W/_skill/$f"; done
+mkdir -p "$W/_skill" && for f in brand.md captions.py cutout.py; do curl -fsSL "$SK/$f" -o "$W/_skill/$f"; done
 ```
 
 ## 0. Resolve the environment (once per session)
@@ -72,6 +72,27 @@ One recording with several topics → split into separate files.
   drawtext=fontfile=$FONTFILE:textfile=$W/label1.txt:fontsize=68:fontcolor=white:shadowcolor=black@0.6:shadowy=4:x=(w-tw)/2:y=h*0.16:alpha='if(lt(t,0.2),t/0.2,if(lt(t,2.2),1,max(0,(2.6-t)/0.4)))'
   ```
 - Render each segment separately (in parallel), then concat with `-f concat -c copy`, then one final pass for fades + an audio track (silent `anullsrc` if there is no music — some apps and editors choke on video-only files).
+
+## 5b. Transitions and effects (only when the user asks for effects)
+Apply effects after scaling to the output size, on the first/last 0.1–0.3 s of a segment. Vary them — one kind per cut, not the same flash everywhere. `D` = segment duration.
+- **Flash:** in `fade=t=in:d=0.16:color=white`, out `fade=t=out:st=<D-0.1>:d=0.1:color=white`.
+- **RGB glitch:** `rgbashift=rh=28:bh=-28:gv=10:enable='lt(t,0.2)'` on the incoming clip, mirrored (`rh=-28:bh=28`, `enable='gt(t,<D-0.15>)'`) on the outgoing one.
+- **Whip blur:** `gblur=sigma=70:sigmaV=0.3:steps=2:enable='lt(t,0.07)',gblur=sigma=30:sigmaV=0.3:steps=2:enable='between(t,0.07,0.15)'`; mirror at the end of the outgoing clip.
+- **Zoom punch:** `scale=w='2*trunc(540*(1+0.35*max(0,1-t/0.3)))':h='2*trunc(960*(1+0.35*max(0,1-t/0.3)))':eval=frame,crop=1080:1920`.
+- **Slow-mo on the key moment:** split the segment into parts and render the key 1–1.5 s at half speed: `setpts=(PTS-STARTPTS)/0.5,minterpolate=fps=30000/1001:mi_mode=blend`, audio `atempo=0.5`. Optional 1.12x punch-in on that part.
+- **Follow the subject** when reframing landscape → 9:16 (sports, sparring): build a contact sheet at 2 fps with `drawgrid=w=iw/10:h=ih`, note the subject's centre x (0–1) every 0.5 s, smooth it, and feed it to `crop` as a piecewise-linear x expression. Ask (or check memory) what the user is wearing that day so you track the right person. Read a sheet of the result and confirm the subject never leaves the frame. If the user wants to see more, crop wider (e.g. 1620x2160 → 1080x1440) over a blurred copy of the same clip.
+
+### Cutout transition (the user calls it "Person Flash" or "Scene-Screen-Effekt")
+**Trigger words:** "Person Flash", "Personen-Flash", "flash me in", "Flash auf die Person", "Scene-Screen-Effekt" all mean this transition — do not ask what is meant and do not substitute the plain white **Flash** from the list above (that one is only for a bare "flash" / "Blitz"). If the user names no cut, pick the 1–2 cuts where they enter the frame most clearly and say which ones you chose.
+
+The people of the **next** clip appear first as cutouts (white outline, quick pop-in) over the last ~0.5 s of the **current** clip; then the next clip's background flashes in. Use it on 1–2 cuts per video.
+
+Needs `rembg`, `opencv-python-headless` and `numpy`: run `WITH_CUTOUT=1 setup.sh` once (or `pip install "rembg[cpu]" opencv-python-headless numpy`, with `--break-system-packages` on system Pythons). The `u2net_human_seg` model downloads from GitHub on first use; if that fails (sandbox), say so in one line and use a flash at that cut instead. Render both clips first at the same output size and frame rate, **without** any other effect at that cut (video-only segments are fine), then run the companion [cutout.py](cutout.py) — it is in `$W/_skill/` if the companion files were fetched:
+```bash
+FF=$FF FP=$FP python3 cutout.py segA.mp4 segB.mp4 15 "$W/cut"     # 15 frames = 0.5 s  ->  cut_a.mp4, cut_x.mp4, cut_b.mp4
+```
+The parts come out as x264 crf 17, stereo 48 kHz AAC (silence if a clip has no audio) and bt709; `-f concat -c copy` only works if the other segments are encoded the same way, otherwise re-encode in the final pass. The first 0.5 s of clip B's own audio is replaced by the tail of clip A's.
+In the concat list replace `segA.mp4`, `segB.mp4` with `cut_a.mp4`, `cut_x.mp4`, `cut_b.mp4` — write that list by hand, in this order (`ls` sorts `cut_b` before `cut_x`). Read a sheet of `cut_x.mp4` before delivering: if the mask grabs bystanders or misses the subject, say so and use a flash at that cut instead. It reads best when the two clips' subjects sit in different parts of the frame.
 
 ## 6. Make it look like the user
 Colors, font and voice from `brand.md`; logo, photos, graphics, music from the B-roll kit `~/Movies/B-roll kit/` (read its `index.md`; if `_inbox/` has files, run `broll-organizer` first). If `brand.md` lacks values, ask once for two brand colors + one font and write them in — never ask again.
