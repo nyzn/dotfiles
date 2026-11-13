@@ -85,10 +85,11 @@ Apply effects after scaling to the output size, on the first/last 0.1–0.3 s of
 ### Cutout transition (the user calls it "Scene-Screen-Effekt")
 The people of the **next** clip appear first as cutouts (white outline, quick pop-in) over the last ~0.5 s of the **current** clip; then the next clip's background flashes in. Use it on 1–2 cuts per video.
 
-Needs `pip install "rembg[cpu]"` (add `--break-system-packages` in cloud sessions); the `u2net_human_seg` model downloads from GitHub on first use. Render both clips first at output size and 30000/1001 fps, **without** any other effect at that cut, then run the companion [cutout.py](cutout.py):
+Needs `rembg`, `opencv-python-headless` and `numpy`: run `WITH_CUTOUT=1 setup.sh` once (or `pip install "rembg[cpu]" opencv-python-headless numpy`, with `--break-system-packages` on system Pythons). The `u2net_human_seg` model downloads from GitHub on first use; if that fails (sandbox), say so in one line and use a flash at that cut instead. Render both clips first at the same output size and frame rate, **without** any other effect at that cut (video-only segments are fine), then run the companion [cutout.py](cutout.py) — it is in `$W/_skill/` if the companion files were fetched:
 ```bash
-python3 cutout.py segA.mp4 segB.mp4 15 "$W/cut"     # 15 frames = 0.5 s  ->  cut_a.mp4, cut_x.mp4, cut_b.mp4
+FF=$FF FP=$FP python3 cutout.py segA.mp4 segB.mp4 15 "$W/cut"     # 15 frames = 0.5 s  ->  cut_a.mp4, cut_x.mp4, cut_b.mp4
 ```
+The parts come out as x264 crf 17, stereo 48 kHz AAC (silence if a clip has no audio) and bt709; `-f concat -c copy` only works if the other segments are encoded the same way, otherwise re-encode in the final pass. The first 0.5 s of clip B's own audio is replaced by the tail of clip A's.
 In the concat list replace `segA.mp4`, `segB.mp4` with `cut_a.mp4`, `cut_x.mp4`, `cut_b.mp4` — write that list by hand, in this order (`ls` sorts `cut_b` before `cut_x`). Read a sheet of `cut_x.mp4` before delivering: if the mask grabs bystanders or misses the subject, say so and use a flash at that cut instead. It reads best when the two clips' subjects sit in different parts of the frame.
 
 ## 6. Make it look like the user

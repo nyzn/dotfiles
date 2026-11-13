@@ -28,6 +28,14 @@ if command -v whisper-cli >/dev/null && [ ! -f "$m" ]; then
     || { rm -f "$m"; echo "Whisper model download failed — captions from speech unavailable on this machine."; }
 fi
 
+# Cutout transition (cutout.py) needs person matting. Opt-in: WITH_CUTOUT=1 setup.sh
+if [ "${WITH_CUTOUT:-0}" = 1 ]; then
+  pkgs=("rembg[cpu]" opencv-python-headless numpy)
+  python3 -m pip install -q "${pkgs[@]}" 2>/dev/null \
+    || python3 -m pip install -q --break-system-packages "${pkgs[@]}" \
+    || echo "rembg install failed — cutout transition unavailable on this machine; use a flash instead."
+fi
+
 # HeyGen Hyperframes motion-graphics skills -> ~/.claude/skills (user-level, untracked: see ~/.claude/.gitignore).
 if command -v npx >/dev/null && [ ! -e ~/.claude/skills/hyperframes ]; then
   npx -y skills add heygen-com/hyperframes -a claude-code -g -s '*' -y || echo "Hyperframes install failed — video-editor works without it."
