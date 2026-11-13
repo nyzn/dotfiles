@@ -1,6 +1,6 @@
 ---
 name: video-editor
-description: Personal video editor. Use whenever the user wants to edit, cut, trim, caption, reframe, split, clean up, level audio on, add transitions or effects (flash, glitch, slow-mo, cutout / "Scene-Screen" transition) to, or export a video, or turn clips into a Reel/TikTok/Short/Story/YouTube video — e.g. "edit this video", "cut my retakes", "add captions", "make this vertical", "make a reel from these clips".
+description: Personal video editor. Use whenever the user wants to edit, cut, trim, caption, reframe, split, clean up, level audio on, add transitions or effects (flash, glitch, slow-mo, "Person Flash" = cutout / "Scene-Screen" transition) to, or export a video, or turn clips into a Reel/TikTok/Short/Story/YouTube video — e.g. "edit this video", "cut my retakes", "add captions", "make this vertical", "make a reel from these clips", "füge Person Flash hinzu".
 ---
 
 # Video Editor
@@ -82,7 +82,9 @@ Apply effects after scaling to the output size, on the first/last 0.1–0.3 s of
 - **Slow-mo on the key moment:** split the segment into parts and render the key 1–1.5 s at half speed: `setpts=(PTS-STARTPTS)/0.5,minterpolate=fps=30000/1001:mi_mode=blend`, audio `atempo=0.5`. Optional 1.12x punch-in on that part.
 - **Follow the subject** when reframing landscape → 9:16 (sports, sparring): build a contact sheet at 2 fps with `drawgrid=w=iw/10:h=ih`, note the subject's centre x (0–1) every 0.5 s, smooth it, and feed it to `crop` as a piecewise-linear x expression. Ask (or check memory) what the user is wearing that day so you track the right person. Read a sheet of the result and confirm the subject never leaves the frame. If the user wants to see more, crop wider (e.g. 1620x2160 → 1080x1440) over a blurred copy of the same clip.
 
-### Cutout transition (the user calls it "Scene-Screen-Effekt")
+### Cutout transition (the user calls it "Person Flash" or "Scene-Screen-Effekt")
+**Trigger words:** "Person Flash", "Personen-Flash", "flash me in", "Flash auf die Person", "Scene-Screen-Effekt" all mean this transition — do not ask what is meant and do not substitute the plain white **Flash** from the list above (that one is only for a bare "flash" / "Blitz"). If the user names no cut, pick the 1–2 cuts where they enter the frame most clearly and say which ones you chose.
+
 The people of the **next** clip appear first as cutouts (white outline, quick pop-in) over the last ~0.5 s of the **current** clip; then the next clip's background flashes in. Use it on 1–2 cuts per video.
 
 Needs `rembg`, `opencv-python-headless` and `numpy`: run `WITH_CUTOUT=1 setup.sh` once (or `pip install "rembg[cpu]" opencv-python-headless numpy`, with `--break-system-packages` on system Pythons). The `u2net_human_seg` model downloads from GitHub on first use; if that fails (sandbox), say so in one line and use a flash at that cut instead. Render both clips first at the same output size and frame rate, **without** any other effect at that cut (video-only segments are fine), then run the companion [cutout.py](cutout.py) — it is in `$W/_skill/` if the companion files were fetched:
